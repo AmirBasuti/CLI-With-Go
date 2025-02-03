@@ -6,6 +6,7 @@ import (
 )
 
 var subcmd = &cobra.Command{
+	Use:   "Substract",
 	Short: "sub 2 number",
 	Long:  "add 2 number to substeract them",
 	Args:  cobra.ExactArgs(2),
