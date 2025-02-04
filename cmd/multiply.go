@@ -11,9 +11,15 @@ var multcmd = &cobra.Command{
 	Short: "Multiply 2 number",
 	Long:  "inter 2 number to Multiply them",
 	Args:  cobra.ExactArgs(2),
-	Run: func(cmd *cobra.Command, args []string) {
+	RunE: func(cmd *cobra.Command, args []string) error {
+		err, res := Multiply(args[0], args[1], roundkonim)
+		if err != nil {
+			return err
+		}
+
 		fmt.Printf(
-			"adding 2 number %s and %s is %s \n", args[0], args[1], Multiply(args[0], args[1], roundkonim))
+			"adding 2 number %s and %s is %s \n", args[0], args[1], res)
+		return nil
 	},
 }
 

@@ -6,13 +6,20 @@ import (
 )
 
 var subcmd = &cobra.Command{
-	Use:   "Substract",
-	Short: "sub 2 number",
-	Long:  "add 2 number to substeract them",
-	Args:  cobra.ExactArgs(2),
-	Run: func(cmd *cobra.Command, args []string) {
+	Use:     "Substract",
+	Aliases: []string{"sub"},
+	Short:   "sub 2 number",
+	Long:    "add 2 number to substeract them",
+	Args:    cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		err, res := Substract(args[0], args[1])
+		if err != nil {
+			return err
+		}
+
 		fmt.Printf(
-			"adding 2 number %s and %s is %s \n", args[0], args[1], Substract(args[0], args[1]))
+			"adding 2 number %s and %s is %s \n", args[0], args[1], res)
+		return nil
 	},
 }
 
